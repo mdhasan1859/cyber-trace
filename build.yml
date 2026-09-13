@@ -24,10 +24,11 @@ jobs:
         with:
           flutter-version: '3.19.0'
 
-      - name: Generate Android Scaffolding
+      - name: Generate and Fix Android Project
         run: |
-          rm -rf android
-          flutter create . --platforms=android
+          flutter create . --platforms=android --org com.example.cybertrace
+          cd android
+          ./gradlew wrapper --gradle-version 8.4
 
       - name: Install Dependencies
         run: flutter pub get
